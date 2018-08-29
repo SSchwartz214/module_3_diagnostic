@@ -19,9 +19,9 @@ describe 'a user' do
       within(first.(".station")) do
         expect(page).to_have css(".name")
         expect(page).to_have css(".address")
-        expect(page).to_have css(".fuel type")
+        expect(page).to_have css(".fuel-type")
         expect(page).to_have css(".distance")
-        expect(page).to_have css(".access time")
+        expect(page).to_have css(".access-time")
       end
     end
   end
