@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 describe 'a user' do
-  visits 'root page' do
+  context 'visits root page' do
     it 'can search for staions' do
-      user = create(:user)
 
       visit '/'
       # And I fill in the search form with 80203 (Note: Use the existing search form)
@@ -20,9 +19,9 @@ describe 'a user' do
       within(first.(".station")) do
         expect(page).to_have css(".name")
         expect(page).to_have css(".address")
-        expect(page).to_have css(".fuel types")
+        expect(page).to_have css(".fuel type")
         expect(page).to_have css(".distance")
-        expect(page).to_have css(".access times")
+        expect(page).to_have css(".access time")
       end
     end
   end
