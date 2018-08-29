@@ -1,22 +1,14 @@
 class NrelService
   def initialize(zip)
     @zip = zip
-    @conn = Faraday.new(url: "https://developer.nrel.gov") do |faraday|
+    @conn = Faraday.new("https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?location=80203") do |faraday|
       faraday.headers["X-Api-Key"] = ENV["nrel_key"]
       faraday.adapter Faraday.default_adapter
     end
   end
 
-  def find_stations
-    get_url("/api/alt-fuel-stations/v1/nearest.json?location=#{@zip}")
-  end
-
-  def get_url(url)
-    response = @conn.get(url)
+  def get_url
+    response = @conn
     JSON.parse(response.body, symbolize_names: true)
-  end
-
-  def self.find_stations(zip)
-    new(zip).find_stations
   end
 end
